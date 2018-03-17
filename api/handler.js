@@ -1,10 +1,12 @@
 import persistence from './persistence';
 
-const p = persistence(process.env.REGION, true);
+const p = persistence(process.env.REGION, process.env.IS_OFFLINE !== undefined);
 
 function result(callback) {
   return (result, err) => {
     if (err) {
+      console.log("err");
+      console.log(err);
       callback(err);
     } else {
       let response;

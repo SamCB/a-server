@@ -30,20 +30,14 @@ provider:
 
 functions:
   getnote:
-    handler: src/handler.getNote
+    handler: api/handler.getNote
     events:
       - http:
           path: note
           method: GET
   savenote:
-    handler: src/handler.saveNote
+    handler: api/handler.saveNote
     events:
       - http:
           path: note
           method: POST
-  app:
-    handler: src/handler.webapp
-    events:
-      - http:
-          path: app
-          method: GET
