@@ -18,9 +18,9 @@ provider:
   environment:
     STAGE: ${self:provider.stage}
     REGION: ${self:provider.region}
-    NAME: ${file(./.env.yml):NAME}
-    SALT: ${file(./.env.yml):SALT}
-    PASSWORD: ${file(./.env.yml):PASSWORD}
+    NAME: ${file(../.env.yml):NAME}
+    SALT: ${file(../.env.yml):SALT}
+    PASSWORD: ${file(../.env.yml):PASSWORD}
     STORAGE_BUCKET: aserver-${self:provider.stage}-storage
 
   iamRoleStatements:
@@ -35,13 +35,13 @@ provider:
 
 functions:
   getnote:
-    handler: api/handler.getNote
+    handler: src/handler.getNote
     events:
       - http:
           path: note
           method: GET
   savenote:
-    handler: api/handler.saveNote
+    handler: src/handler.saveNote
     events:
       - http:
           path: note
