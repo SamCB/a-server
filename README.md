@@ -22,3 +22,22 @@ The endpoints are:
 
 Both the /note endpoints take a header: `Auth` which right now is just a password.
 Who knows. Maybe someday I'll do it properly.
+
+## Deployment
+
+To deploy. Install everything you're going to need:
+
+```
+yarn install
+```
+
+You'll need to copy `.env.example.yml` and make a few changes (see the example for details).
+You might want to make some changes to `serverless.yml` such as moving to your local `region` (`ap-southeast-2` represet!).
+
+Make sure you've got your AWS credentials all set
+(See [here for details](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)).
+And then use serverless to deploy
+
+```
+yarn sls deploy
+```
