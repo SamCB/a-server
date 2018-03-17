@@ -19,7 +19,7 @@ provider:
     STAGE: ${self:provider.stage}
     REGION: ${self:provider.region}
     NAME: ${file(./.env.yml):NAME}
-    SALT: ${file(./env.yml):SALT}
+    SALT: ${file(./.env.yml):SALT}
     PASSWORD: ${file(./.env.yml):PASSWORD}
 
   iamRoleStatements:
