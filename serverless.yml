@@ -33,13 +33,13 @@ functions:
     handler: src/handler.getNote
     events:
       - http:
-          path: getnote
+          path: note
           method: GET
   savenote:
     handler: src/handler.saveNote
     events:
       - http:
-          path: savenote
+          path: note
           method: POST
   app:
     handler: src/handler.webapp
