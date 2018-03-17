@@ -21,12 +21,17 @@ provider:
     NAME: ${file(./.env.yml):NAME}
     SALT: ${file(./.env.yml):SALT}
     PASSWORD: ${file(./.env.yml):PASSWORD}
+    STORAGE_BUCKET: aserver-${self:provider.stage}-storage
 
   iamRoleStatements:
     - Effect: Allow
       Action:
-        - s3:*
-      Resource: "arn:aws:dynamodb:${self:provider.region}:*:*"
+        - "s3:*"
+      Resource: "arn:aws:s3:::${self:provider.environment.STORAGE_BUCKET}/*"
+    - Effect: Allow
+      Action:
+        - "s3:CreateBucket"
+      Resource: "arn:aws:s3:::*"
 
 functions:
   getnote:

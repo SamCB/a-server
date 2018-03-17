@@ -2,7 +2,7 @@ import AWS from 'aws-sdk';
 
 import crypto from 'crypto';
 
-const DEFAULT_BUCKET = 'aserver';
+const DEFAULT_BUCKET = process.env.STORAGE_BUCKET;
 const PASSWORD_FILE = '__passwords';
 const UNAUTH_RESPONSE = {
     file: null,
@@ -26,7 +26,8 @@ async function validateBucket(s3) {
   // Try to create a new bucket, just in case.
   try {
     await s3.createBucket({Bucket: DEFAULT_BUCKET}).promise();
-  } catch(e) {}
+  } catch(e) {
+  }
   // Create and populate the password file if it doesn't exist
   try {
     const response = await s3.getObject({Bucket: DEFAULT_BUCKET, Key: PASSWORD_FILE}).promise();
