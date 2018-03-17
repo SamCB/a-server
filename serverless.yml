@@ -1,0 +1,49 @@
+service: notes-app-api
+
+# Use serverless-webpack plugin to transpile ES6/ES7
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+# Enable auto-packing of external modules
+custom:
+  webpackIncludeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prod
+  region: ap-southeast-2
+
+  environment:
+    STAGE: ${self:provider.stage}
+    REGION: ${self:provider.region}
+    NAME: ${file(./.env.yml):NAME}
+    SALT: ${file(./env.yml):SALT}
+    PASSWORD: ${file(./.env.yml):PASSWORD}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "arn:aws:dynamodb:${self:provider.region}:*:*"
+
+functions:
+  getnote:
+    handler: src/handler.getNote
+    events:
+      - http:
+          path: getnote
+          method: GET
+  savenote:
+    handler: src/handler.saveNote
+    events:
+      - http:
+          path: savenote
+          method: POST
+  app:
+    handler: src/handler.webapp
+    events:
+      - http:
+          path: app
+          method: GET
