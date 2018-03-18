@@ -28,6 +28,7 @@ export class LoginForm extends React.Component {
           hintText="Password Field"
           floatingLabelText="Password"
           type="password"
+          value={this.state.password}
           onChange={this.onPasswordChange}
         />
         <br />
