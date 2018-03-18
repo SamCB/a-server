@@ -2,6 +2,18 @@ import persistence from './persistence';
 
 const p = persistence(process.env.REGION, process.env.IS_OFFLINE !== undefined);
 
+function formatResponse(statusCode, body, headers = {}) {
+  return {
+    statusCode,
+    body: JSON.stringify(body),
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "auth",
+      ...headers
+    }
+  };
+}
+
 function result(callback) {
   return (result, err) => {
     if (err) {
@@ -9,9 +21,9 @@ function result(callback) {
     } else {
       let response;
       if (result.error) {
-        response = {statusCode: 400, body: JSON.stringify({error: result.error})}
+        response = formatRespose(400, {error: result.error});
       } else {
-        response = {statusCode: 200, body: JSON.stringify({file: result.file})}
+        response = formatResponse(200, {file: result.file});
       }
       callback(null, response);
     }
@@ -19,7 +31,7 @@ function result(callback) {
 }
 
 function badInput(callback, message) {
-  callback(null, {statusCode: 400, body: JSON.stringify({error: message})});
+  callback(null, formatResponse(400, {error: message}));
 }
 
 export function getNote(event, context, callback) {
@@ -48,6 +60,3 @@ export function saveNote(event, context, callback) {
   p.save(password, body.file).then(result(callback));
 }
 
-export function webapp(event, context, callback) {
-
-}

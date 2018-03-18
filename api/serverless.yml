@@ -40,11 +40,32 @@ functions:
       - http:
           path: note
           method: GET
-          cors: true
+          cors: 
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - auth
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
   savenote:
     handler: src/handler.saveNote
     events:
       - http:
           path: note
           method: POST
-          cors: true
+          cors: 
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - auth
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
+
