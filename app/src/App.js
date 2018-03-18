@@ -1,22 +1,74 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import { LoginForm } from './components/login';
+import { ErrorDialog } from './components/error';
+import CircularProgress from 'material-ui/CircularProgress';
+
+import loginAction from './actions/login';
+
 import './App.css';
 
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggingIn: false,
+      password: undefined,
+      text: undefined,
+      err: undefined
+    };
+
+    this.onLogin = this.onLogin.bind(this);
+  }
+
+  onLogin(login) {
+    this.setState({
+      password: login.password,
+      isLoggingIn: true
+    });
+    loginAction(login.password)
+    .then((result) => {
+      this.setState({
+        text: result,
+        isLoggingIn: false
+      });
+    })
+    .catch((err) => {
+      this.setState({
+        err: err.message,
+        isLoggingIn: false
+      });
+    })
+  }
+
   render() {
+    const password = this.state.password;
+    const isLoggingIn = this.state.isLoggingIn;
+    const err = this.state.err;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Maybe I will...
-        </p>
-      </div>
+      <MuiThemeProvider>
+        <div>
+          {password === undefined &&
+            <LoginForm onSubmit={this.onLogin}>
+              Hello Sam... At least, I hope that is you...
+            </LoginForm>
+          }
+          {isLoggingIn === true &&
+            <CircularProgress />
+          }
+          {err &&
+            <ErrorDialog
+              onClose={()=>this.setState({err: undefined})}
+            >
+              {err}
+            </ErrorDialog>
+          }
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

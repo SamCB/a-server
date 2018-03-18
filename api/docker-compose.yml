@@ -2,3 +2,5 @@ version: '2'
 services:
     localstack:
         image: localstack/localstack
+        ports:
+            - 4572:4572

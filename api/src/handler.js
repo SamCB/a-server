@@ -23,9 +23,9 @@ function badInput(callback, message) {
 }
 
 export function getNote(event, context, callback) {
-  const password = event.headers.Auth;
+  const password = event.headers.auth;
   if (password === undefined) {
-    badInput(callback, 'No Auth header found');
+    badInput(callback, 'No auth header found');
   } else {
     p.get(password).then(result(callback));
   }
@@ -33,7 +33,7 @@ export function getNote(event, context, callback) {
 }
 
 export function saveNote(event, context, callback) {
-  const password = event.headers.Auth;
+  const password = event.headers.auth;
   if (password === undefined) {
     badInput(callback, 'No Auth header found');
     return;
