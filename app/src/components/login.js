@@ -5,9 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
   padding: '15px',
-  margin: 'auto',
   marginTop: '15px',
-  width: '400px'
+  width: '100%'
 }
 
 export class LoginForm extends React.Component {

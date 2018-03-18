@@ -6,14 +6,14 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-  width: '500px',
-  margin: 'auto',
+  width: '100%',
   marginTop: '15px',
+  marginBottom: '15px',
   padding: '15px'
 };
 
 const textStyle = {
-  minHeight: '500px',
+  minHeight: '350px',
   padding: '15px',
   fontFamily: "'IBM Plex Mono', monospace"
 };

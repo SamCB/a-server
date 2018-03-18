@@ -13,6 +13,13 @@ import submitAction from './actions/submit';
 
 import './App.css';
 
+const flexSides = {
+  flex: '1'
+};
+
+const flexCentre = {
+  flex: '16'
+};
 
 class App extends Component {
   constructor(props) {
@@ -93,10 +100,13 @@ class App extends Component {
           showMenuIconButton={false}
         />
         <div class="wrapper">
+          <div style={flexSides}></div>
           {this.state.password === undefined &&
-            <LoginForm onSubmit={this.onLogin}>
-              Hello Sam... At least, I hope that is you...
-            </LoginForm>
+            <div style={{...flexCentre, maxWidth: '500px'}}>
+              <LoginForm class="body" onSubmit={this.onLogin}>
+                Hello Sam... At least, I hope that is you...
+              </LoginForm>
+            </div>
           }
           {(this.state.isLoggingIn === true || this.state.isSubmitting === true) &&
             <LoadingSpinner />
@@ -111,13 +121,16 @@ class App extends Component {
           {this.state.password !== undefined &&
            this.state.text !== undefined &&
            this.state.isLoggingIn === false &&
-            <AppForm
-              value={this.state.text}
-              canSubmit={this.state.textDirty}
-              onChange={this.onFormChange}
-              onSubmit={this.onFormSubmit}
-            />
+            <div style={{...flexCentre, maxWidth: '500px'}}>
+              <AppForm
+                value={this.state.text}
+                canSubmit={this.state.textDirty}
+                onChange={this.onFormChange}
+                onSubmit={this.onFormSubmit}
+              />
+            </div>
           }
+          <div style={flexSides}></div>
         </div>
       </MuiThemeProvider>
     );
