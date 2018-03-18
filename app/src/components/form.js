@@ -5,6 +5,19 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+const style = {
+  width: '500px',
+  margin: 'auto',
+  marginTop: '15px',
+  padding: '15px'
+};
+
+const textStyle = {
+  minHeight: '500px',
+  padding: '15px',
+  fontFamily: "'IBM Plex Mono', monospace"
+};
+
 export class AppForm extends React.Component {
   constructor(props) {
     super(props);
@@ -20,20 +33,25 @@ export class AppForm extends React.Component {
 
   render() {
     return (
-      <Paper zDepth={2}>
-        <TextField
-          value={this.props.value}
-          multiLine={true}
-          hintText="Value"
-          floatingLabelText="Value"
-          onChange={this.props.onChange}
-        />
+      <Paper style={style} zDepth={2}>
+        <Paper>
+          <TextField
+            value={this.props.value}
+            multiLine={true}
+            hintText="Value"
+            onChange={this.props.onChange}
+            fullWidth={true}
+            underlineShow={false}
+            style={textStyle}
+          />
+        </Paper>
         <br />
         <RaisedButton
           label="Submit"
           primary={true}
           disabled={!this.props.canSubmit}
           onClick={this.onSubmit}
+          fullWidth={true}
         />
       </Paper>
     );

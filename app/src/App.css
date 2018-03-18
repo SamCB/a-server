@@ -3,6 +3,11 @@
   text-align: center;
 }
 
+.wrapper {
+  width: 800px;
+  margin: auto;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;

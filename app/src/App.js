@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import AppBar from 'material-ui/AppBar';
 import { LoginForm } from './components/login';
 import { ErrorDialog } from './components/error';
 import { AppForm } from './components/form';
@@ -87,7 +88,11 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div>
+        <AppBar
+          title="A Server"
+          showMenuIconButton={false}
+        />
+        <div class="wrapper">
           {this.state.password === undefined &&
             <LoginForm onSubmit={this.onLogin}>
               Hello Sam... At least, I hope that is you...

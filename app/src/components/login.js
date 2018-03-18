@@ -3,6 +3,13 @@ import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+const style = {
+  padding: '15px',
+  margin: 'auto',
+  marginTop: '15px',
+  width: '400px'
+}
+
 export class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -22,12 +29,14 @@ export class LoginForm extends React.Component {
 
   render() {
     return (
-      <Paper zDepth={2}>
-        <p>{this.props.children}</p>
+      <Paper style={style} zDepth={2}>
+        {this.props.children}
+        <br />
         <TextField
           hintText="Password Field"
           floatingLabelText="Password"
           type="password"
+          style={{width: '100%'}}
           value={this.state.password}
           onChange={this.onPasswordChange}
         />
@@ -36,6 +45,7 @@ export class LoginForm extends React.Component {
           label="Submit"
           primary={true}
           onClick={this.onSubmit}
+          fullWidth={true}
         />
       </Paper>
     );
