@@ -1,6 +1,7 @@
 # A Server
 
 This is a SSSS (Super Simple Super Stupid) api and web interface that I built in a day and a half for an IoT project I was working on.
+(See [A Server Printer](https://github.com/SamCB/A-Server-Printer) for details on that!)
 
 My goal was an API where I could log in, get a text note, and upload a new one.
 It doesn't need to support multiple users.
@@ -201,3 +202,4 @@ Some improvements might include:
 - [ ] Multiple users
 - [ ] Multiple notes per user
 - [ ] Actually writing the react frontend properly
+- [ ] One click deployment (proper cloudformation???)
